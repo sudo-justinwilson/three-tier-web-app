@@ -131,3 +131,16 @@ output "alb_listener_id" {
   value       = module.alb.alb_listener_id
   description = "The ID of the ALB listener"
 }
+
+###---  TASK DEFINITION ---###
+output "task_definition_arn" {
+  value       = module.service.task_definition_arn
+}
+
+output "task_definition_family" {
+  value       = module.service.task_definition_family
+}
+
+output "task_definition_revision" {
+  value       = module.service.task_definition_revision
+}

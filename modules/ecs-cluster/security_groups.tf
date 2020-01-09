@@ -23,3 +23,4 @@ resource "aws_security_group" "three-tier-sg" {
   tags = {
     Name = "three-tier-sg"
   }
+}

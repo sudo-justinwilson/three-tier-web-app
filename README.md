@@ -4,8 +4,8 @@
 
 ## Getting Started
 
-This builds a three-tier web application. It contai
-This builds
+This builds the infrastructure for a three-tier web application in AWS.
+
 The following components are built:
 
 * A VPC with a public subnet and 2 private subnets.
@@ -35,6 +35,7 @@ cd ${/PATH/TO/REPO}
 ```
 
 3) Install Terraform by following instructions [here](https://learn.hashicorp.com/terraform/getting-started/install.html)
+
 
 4) Once Terraform is installed and the terraform command is available, run the following commands to build the environment
 
