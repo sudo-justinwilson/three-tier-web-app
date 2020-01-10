@@ -144,3 +144,14 @@ output "task_definition_family" {
 output "task_definition_revision" {
   value       = module.service.task_definition_revision
 }
+
+#####   ECS SERVICE ####
+output "ecs_service_arn" { 
+  value       = module.service.ecs_service_arn
+  description = "The ARN of the ECS service"
+}
+
+output "ecs_desired_count" {
+  value       = module.service.ecs_desired_count
+  description = "The desired count of the ECS service"
+}
