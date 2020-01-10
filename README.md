@@ -56,7 +56,7 @@ Point your browser at the DNS record to see the web application.
 
 The reverse web proxy is an Nginx Docker container. The nginx configuration is stored [here on Github](https://github.com/sudo-justinwilson/nginx-config). Any pushes to this repository trigger a new build a new container version [here](https://hub.docker.com/repository/docker/justinwilson/nginx-config) in Docker Hub, making a new container image available.
 
-We can then deploy the ECS service revision with the following `aws` command (assumes [awscli](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) is installed) to deploy the new image to the ECS cluster (note that you may need to increase the memory capacity to deploy a new container):
+We can then deploy the ECS service revision with the following `aws` command (assumes [awscli](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) is installed) to deploy the new image to the ECS cluster:
 
 ```
 $ aws ecs update-service --cluster arn:aws:ecs:ap-southeast-2:853057580641:cluster/three-tier_ecs_cluster --service arn:aws:ecs:ap-southeast-2:853057580641:service/three-tier-service --force-new-deployment
