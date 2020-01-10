@@ -27,7 +27,8 @@ variable "desired_capacity" {
 
 variable "ecs_instance_type" {
   description = "the size of the EC2 instance to use"
-  default     = "t2.micro"
+  #default     = "t2.micro"
+  default     = "t2.small"
 }
 
 variable "security_groups" {
