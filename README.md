@@ -44,10 +44,24 @@ $ terraform init
 $ terraform plan
 $ terraform apply     
 ```
-- _Note:_ This infrastructure is built in the _ap-southeast-2_ region by default. To change the region, edit the `./variables.tf`.
+
+_Note:_
+* This infrastructure is built in the _ap-southeast-2_ region by default. To change the region, edit the `./variables.tf`.
+* _Note:_ I have encountered an error which prevents the downloading of the `terraform-aws-modules/vpc/aws` Terraform module. This error was fixed by upgrading to Terraform version 0.12.19. See [this bug](https://github.com/terraform-aws-modules/terraform-aws-eks/issues/672 for more details.
 
 5) `terraform apply` will return multiple outputs, including an `alb_dns_name` output, which is the DNS record that points to the application load-balancer.
 Point your browser at the DNS record to see the web application.
+
+### Updating the Nginx configuration
+
+The reverse web proxy is an Nginx Docker container. The nginx configuration is stored [here on Github](https://github.com/sudo-justinwilson/nginx-config). Any pushes to this repository trigger a new build a new container version [here](https://hub.docker.com/repository/docker/justinwilson/nginx-config) in Docker Hub, making a new container image available.
+
+We can then deploy the ECS service revision with the following `aws` command (assumes [awscli](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) is installed) to deploy the new image to the ECS cluster (note that you may need to increase the memory capacity to deploy a new container):
+
+```
+$ aws ecs update-service --cluster arn:aws:ecs:ap-southeast-2:853057580641:cluster/three-tier_ecs_cluster --service arn:aws:ecs:ap-southeast-2:853057580641:service/three-tier-service --force-new-deployment
+```
+* _Replace the `--service` value with the `ecs_service_arn` output value_
 
 ## Modules
 Each directory in the 'modules/' directory is a Terraform module, that can be reused in other projects.
@@ -68,6 +82,8 @@ $ terraform destroy
 ## Built With
 
 * [Terraform](https://terraform.io) - Used to automate the building of infrastructure
+* [Docker](https://docker.io) - Application containerization.
+* [Nginx](https://nginx.org) - Reverse web proxy.
 
 ## Contributing
 
