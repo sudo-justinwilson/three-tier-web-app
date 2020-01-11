@@ -47,7 +47,7 @@ $ terraform apply
 
 _Note:_
 * This infrastructure is built in the _ap-southeast-2_ region by default. To change the region, edit the `./variables.tf`.
-* _Note:_ I have encountered an error which prevents the downloading of the `terraform-aws-modules/vpc/aws` Terraform module. This error was fixed by upgrading to Terraform version 0.12.19. See [this bug](https://github.com/terraform-aws-modules/terraform-aws-eks/issues/672 for more details.
+* I have encountered an error which prevents the downloading of the `terraform-aws-modules/vpc/aws` Terraform module. This error was fixed by upgrading to Terraform version 0.12.19. See [this bug](https://github.com/terraform-aws-modules/terraform-aws-eks/issues/672) for more details.
 
 5) `terraform apply` will return multiple outputs, including an `alb_dns_name` output, which is the DNS record that points to the application load-balancer.
 Point your browser at the DNS record to see the web application.
